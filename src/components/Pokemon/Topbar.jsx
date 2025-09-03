@@ -1,32 +1,25 @@
-import { forwardRef } from "react";
+import React from "react";
 
-const Topbar = forwardRef(function Topbar(
-  { search, setSearch, showFavsOnly, setShowFavsOnly },
-  ref
-) {
+export default function Topbar({ search, setSearch, showFavsOnly, setShowFavsOnly }) {
   return (
-    <div className="topbar" ref={ref}>
+    <div className="topbar">
       <input
-        type="search"
-        inputMode="search"
-        enterKeyHint="search"
         id="search"
+        type="search"
         placeholder="Search Pokemon"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        aria-label="Search Pokemon"
         autoComplete="off"
-        aria-label="Search Pokemon by name"
       />
       <button
         id="favToggle"
         className="fav-toggle"
         aria-pressed={showFavsOnly}
-        onClick={() => setShowFavsOnly(v => !v)}
+        onClick={() => setShowFavsOnly(!showFavsOnly)}
       >
         {showFavsOnly ? "Show All" : "Show Favorites"}
       </button>
     </div>
   );
-});
-
-export default Topbar;
+}
